@@ -1,0 +1,12 @@
+@use '@/styles/size';
+
+.wrapper {
+  width: 100%;
+  max-width: size.$wrapper-width;
+  margin: auto;
+  padding: 1rem 2rem;
+
+  @include mobile {
+    padding: 1rem;
+  }
+}

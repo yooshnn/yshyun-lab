@@ -1,0 +1,81 @@
+@use '@/styles/color';
+
+@mixin button-variant($bg, $color, $hover-bg: $bg, $hover-color: $color) {
+  background: $bg;
+  color: $color;
+
+  &:hover {
+    background: $hover-bg;
+    color: $hover-color;
+  }
+}
+
+$radius: (
+  'sm': 0.25rem,
+  'full': 1000px,
+);
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  border-radius: 0.5rem;
+
+  // Variant
+
+  &--variant-filled {
+    @include button-variant(color.$accent, white, color.$primary);
+  }
+
+  &--variant-ghost {
+    @include button-variant(
+      transparent,
+      color.$accent,
+      rgba(color.$primary, 0.2)
+    );
+  }
+
+  &--variant-outline {
+    @include button-variant(
+      transparent,
+      color.$accent,
+      transparent,
+      color.$primary
+    );
+    box-shadow: 0 0 0 1px color.$accent inset;
+
+    &:hover {
+      box-shadow: 0 0 0 1px color.$primary inset;
+    }
+  }
+
+  // Radius
+
+  @each $size, $value in $radius {
+    &--rounded-#{$size} {
+      border-radius: $value;
+    }
+  }
+
+  // Disabled
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Icon
+
+  .icon {
+    margin-left: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2;
+    flex-shrink: 0;
+  }
+}

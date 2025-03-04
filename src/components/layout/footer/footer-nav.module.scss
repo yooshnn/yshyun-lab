@@ -1,0 +1,61 @@
+@use '@/styles/color';
+@use '@/styles/size';
+
+.wrapper {
+  width: 100%;
+  background-color: color.$pale;
+  padding: 5rem 2rem 4rem 2rem;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: size.$wrapper-width;
+  margin: auto;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  h3.category {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .item {
+      margin-bottom: 0.5rem;
+
+      a {
+        text-decoration: none;
+        color: #666;
+
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+.column {
+  @include desktop {
+    width: calc(100% / 6);
+  }
+  @include tablet {
+    width: calc(100% / 3);
+  }
+  @include mobile {
+    width: 100%;
+  }
+}

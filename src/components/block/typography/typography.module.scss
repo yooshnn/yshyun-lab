@@ -1,0 +1,15 @@
+@use '@/styles/typography';
+
+@each $tag, $property in typography.$typography {
+  #{$tag}.text {
+    @include typography($tag);
+
+    @if $tag == h2 {
+      margin: 0.5rem 0 2rem 0;
+    }
+
+    @if $tag == h3 {
+      margin: 0.5rem 0 1.5rem 0;
+    }
+  }
+}

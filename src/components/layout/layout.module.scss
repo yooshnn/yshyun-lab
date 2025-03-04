@@ -1,0 +1,14 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // 전체 뷰포트 높이
+
+  // stacking context
+  position: relative;
+  isolation: isolate;
+}
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+}
