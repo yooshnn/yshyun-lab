@@ -69,6 +69,7 @@ const Content = ({ close }: { close: () => void }) => {
                   className={styles.section}
                   href={`/${section}`}
                   key={`category:${category};section:${section}`}
+                  onClick={close}
                 >
                   {section}
                 </Link>
