@@ -14,10 +14,10 @@ export const About = () => (
     </div>
     <div className={styles.text}>
       <p>
-        5N109, INHA UNIVERSITY, 100 Inha-ro, Michuhol-gu, Incheon 22212, KOREA
+        5N212, INHA UNIVERSITY, 100 Inha-ro, Michuhol-gu, Incheon 22212, KOREA
       </p>
       <p>
-        © Copyright 2025. Mathematical Intelligence Lab. All Rights Reserved.
+        © Copyright 2025. Mathematical Intelligence Lab. All Rights Reserved.
       </p>
     </div>
   </div>

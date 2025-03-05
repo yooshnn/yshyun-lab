@@ -1,0 +1,15 @@
+@use '@/styles/color';
+
+.content {
+  grid-template-columns: 10rem 1fr;
+
+  h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 400;
+  }
+
+  p {
+    color: color.$dark;
+  }
+}
