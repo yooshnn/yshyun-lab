@@ -2,16 +2,20 @@
   display: flex;
   visibility: hidden;
 
-  .sm {
+  &.sm {
     width: 0.5rem;
   }
 
-  .md {
+  &.md {
     width: 1rem;
   }
 
-  .lg {
+  &.lg {
     width: 2rem;
+  }
+
+  &.xl {
+    width: 3rem;
   }
 }
 
@@ -20,14 +24,18 @@
   visibility: hidden;
 
   &.sm {
-    height: 8px;
+    height: 0.5rem;
   }
 
   &.md {
-    height: 16px;
+    height: 1rem;
   }
 
   &.lg {
-    height: 32px;
+    height: 2rem;
+  }
+
+  &.xl {
+    height: 3rem;
   }
 }

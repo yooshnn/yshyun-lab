@@ -3,7 +3,7 @@ import styles from './spacer.module.scss';
 
 interface Props {
   direction?: 'x' | 'y';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
 export const Spacer = ({ direction = 'y', size = 'md' }: Props) => (

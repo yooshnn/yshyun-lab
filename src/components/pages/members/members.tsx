@@ -15,7 +15,7 @@ interface WrapperProps extends React.PropsWithChildren {
 
 export const Members = ({ title, children }: WrapperProps) => (
   <div className={styles.wrapper}>
-    <Typography as="h3">{title}</Typography>
+    <Typography as="h2">{title}</Typography>
     <ul>{children}</ul>
   </div>
 );
