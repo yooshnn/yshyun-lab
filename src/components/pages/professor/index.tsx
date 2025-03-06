@@ -1,4 +1,3 @@
-export * from './profile';
-export * from './biography';
-export * from './education';
-export * from './experience';
+export * from './biography/biography';
+export * from './profile/profile';
+export * from './timeline';

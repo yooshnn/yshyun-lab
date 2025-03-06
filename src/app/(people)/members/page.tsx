@@ -1,7 +1,6 @@
 import { PageTitle, Wrapper } from '@/components';
-import { Group } from '@/components/pages/members';
-import { data } from '@/components/pages/members/dummy';
-import { Member } from '@/components/pages/members/member';
+import { Members, MembersItem } from '@/components/pages/members';
+import { data } from '../dummy';
 import styles from './page.module.scss';
 
 export default async function Page() {
@@ -9,30 +8,30 @@ export default async function Page() {
     <>
       <PageTitle title="Members" subtitle="PEOPLE" />
       <Wrapper className={styles.wrapper}>
-        <Group title="Ph.D. Candidates">
+        <Members title="Ph.D. Candidates">
           {data.doctor.map(({ uid, name, alias, email, history }) => (
-            <Member
+            <MembersItem
               key={uid}
-              image="/assets/professor.jpg"
+              image="/assets/dummy-members.jpg"
               name={name}
               alias={alias}
               email={email}
               history={history}
             />
           ))}
-        </Group>
-        <Group title="M.S. Candidates">
+        </Members>
+        <Members title="M.S. Candidates">
           {data.master.map(({ uid, name, alias, email, history }) => (
-            <Member
+            <MembersItem
               key={uid}
-              image={uid === 4 ? null : '/assets/professor.jpg'}
+              image={uid === 4 ? null : '/assets/dummy-members.jpg'}
               name={name}
               alias={alias}
               email={email}
               history={history}
             />
           ))}
-        </Group>
+        </Members>
       </Wrapper>
     </>
   );

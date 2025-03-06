@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import React from 'react';
-import { Logo } from '../logo';
+import { Logo } from '../logo/logo';
 import styles from './header.module.scss';
 import { NavCompact, NavFull } from './nav';
 

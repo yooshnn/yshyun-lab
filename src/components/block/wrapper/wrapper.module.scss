@@ -1,9 +1,12 @@
 @use '@/styles/size';
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
   max-width: size.$wrapper-width;
-  margin: auto;
+  margin: 1rem auto 8rem auto;
   padding: 1rem 2rem;
 
   @include mobile {

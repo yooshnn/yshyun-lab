@@ -3,27 +3,32 @@ import React from 'react';
 import styles from './timeline.module.scss';
 
 interface WrapperProps extends React.PropsWithChildren {
+  gap?: 'md' | 'lg';
   className?: string;
 }
 
 interface ItemProps extends React.PropsWithChildren {
+  size?: 'md' | 'lg';
   period: string;
   className?: string;
   content?: string[];
 }
 
-export const Timeline = ({ children, className }: WrapperProps) => (
-  <ul className={clsx(styles.wrapper, className)}>{children}</ul>
+export const Timeline = ({ children, gap = 'lg', className }: WrapperProps) => (
+  <ul className={clsx(styles.wrapper, styles[`gap-${gap}`], className)}>
+    {children}
+  </ul>
 );
 
 export const TimelineItem = ({
+  size = 'lg',
   period,
   content,
   className,
   children,
 }: ItemProps) => {
   return (
-    <li className={clsx(styles.item, className)}>
+    <li className={clsx(styles.item, styles[size], className)}>
       <div className={styles.period}>{period}</div>
       <div className={styles.content}>
         {children}

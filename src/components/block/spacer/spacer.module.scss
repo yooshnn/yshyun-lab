@@ -1,0 +1,34 @@
+.x {
+  display: flex;
+  visibility: hidden;
+
+  .sm {
+    width: 0.5rem;
+  }
+
+  .md {
+    width: 1rem;
+  }
+
+  .lg {
+    width: 2rem;
+  }
+}
+
+.y {
+  display: flex;
+  visibility: hidden;
+
+  .sm {
+    height: 0.5rem;
+  }
+
+  .md {
+    margin-top: 1rem;
+    min-height: 34px;
+  }
+
+  .lg {
+    height: 2rem;
+  }
+}

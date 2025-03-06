@@ -10,10 +10,7 @@ export const professorInfo = {
   email: { name: 'yshyun', domain: 'inha.ac.kr' },
   phone: '+82-32-860-7629',
   office: '5N212',
-  image: {
-    src: '/assets/professor.jpg',
-    alt: 'photograph of the professor',
-  },
+  image: '/assets/professor.jpg',
 };
 
 export const biography = [

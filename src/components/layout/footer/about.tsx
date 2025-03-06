@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { Link } from '@/components/ui';
-import { Logo } from '../logo';
+import { Link } from '@/components';
+import { Logo } from '../logo/logo';
 import styles from './about.module.scss';
 
 export const About = () => (

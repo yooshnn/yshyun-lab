@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { Box, Typography } from '@/components/block';
+import { Box, Typography } from '@/components';
+import { biography } from '../config';
 import styles from './biography.module.scss';
-import { biography } from './config';
 
 interface Props {
   position: 'regular' | 'side';

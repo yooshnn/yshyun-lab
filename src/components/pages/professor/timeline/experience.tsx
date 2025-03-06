@@ -1,7 +1,6 @@
-import { Box, Typography } from '@/components/block';
-import { Timeline, TimelineItem } from '@/components/ui';
-import { education } from './config';
-import styles from './experience.module.scss';
+import { Box, Timeline, TimelineItem, Typography } from '@/components';
+import { education } from '../config';
+import styles from './timeline.module.scss';
 
 export const Education = () => (
   <Box>

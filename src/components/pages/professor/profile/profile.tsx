@@ -1,8 +1,7 @@
 import { MailIcon, MapPinIcon, PhoneIcon } from 'lucide-react';
 import Image from 'next/image';
-import { Box, Typography } from '@/components/block';
-import { Button, Email, Link } from '@/components/ui';
-import { professorInfo } from './config';
+import { Box, Button, Email, Link, Typography } from '@/components';
+import { professorInfo } from '../config';
 import styles from './profile.module.scss';
 
 export const Profile = () => {
@@ -13,7 +12,7 @@ export const Profile = () => {
     <Box className={styles.profile}>
       <Box direction="x" className={styles.body}>
         <div className={styles.photograph}>
-          <Image fill src={image.src} alt={image.alt} />
+          <Image fill src={image} alt="Photograph of professor Hyun." />
         </div>
         <div className={styles.information}>
           <h2 className={styles.name}>

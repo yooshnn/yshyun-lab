@@ -88,4 +88,27 @@ export const data = {
       ],
     },
   ],
+  alumni: [
+    {
+      uid: 6,
+      name: 'Hubert Blaine Wolfeschlegelsteinhausenbergerdorff Sr.',
+      alias: '홍길동',
+      email: 'gdhong@inha.ac.kr',
+      history: [
+        {
+          period: 'Present',
+          information: 'Professor @ Inha University.',
+        },
+        {
+          period: '2018 - 2023',
+          information:
+            'Integrated MS & PhD candidate, Mathematics, Inha University.',
+        },
+        {
+          period: '2013 - 2018',
+          information: 'BS, Computer Engineering, Inha University. ',
+        },
+      ],
+    },
+  ],
 };

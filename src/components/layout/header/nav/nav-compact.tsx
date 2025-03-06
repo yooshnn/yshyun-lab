@@ -3,7 +3,7 @@
 import { MenuIcon, XIcon } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
-import { Button } from '@/components/ui';
+import { Button } from '@/components';
 import { sitemap } from '../../config';
 import { Portal } from '../portal/portal';
 import styles from './nav-compact.module.scss';
