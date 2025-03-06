@@ -19,16 +19,15 @@
   display: flex;
   visibility: hidden;
 
-  .sm {
-    height: 0.5rem;
+  &.sm {
+    height: 8px;
   }
 
-  .md {
-    margin-top: 1rem;
-    min-height: 34px;
+  &.md {
+    height: 16px;
   }
 
-  .lg {
-    height: 2rem;
+  &.lg {
+    height: 32px;
   }
 }
