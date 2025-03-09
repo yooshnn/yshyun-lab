@@ -36,11 +36,13 @@ export const LecturesComponent = ({
   lectures: TLectureSelected[];
   filter: string;
 }) => {
-  const [limit, setLimit] = React.useState(5);
-  const full = limit === lectures.length;
+  const initialLimit = 5;
+
+  const [limit, setLimit] = React.useState(initialLimit);
+  const full = limit >= lectures.length;
 
   const handleClick = () => {
-    if (full) setLimit(10);
+    if (full) setLimit(initialLimit);
     else setLimit((pre) => Math.min(lectures.length, pre + 5));
   };
 
@@ -53,7 +55,7 @@ export const LecturesComponent = ({
           data={filter === 'postgraduate' ? postgraduate : undergraduate}
         />
       ))}
-      {lectures.length > 10 && (
+      {lectures.length > initialLimit && (
         <Button onClick={handleClick}>{full ? 'fold' : 'show more'}</Button>
       )}
     </Lectures>
