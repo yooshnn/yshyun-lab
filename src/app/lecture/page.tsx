@@ -25,7 +25,7 @@ export default async function Page({ searchParams }: Props) {
 
   return (
     <>
-      <PageTitle title="Project" subtitle="" />
+      <PageTitle title="Lecture" subtitle="" />
       <Wrapper>
         <NavComponent />
         <LecturesComponent lectures={lectures} filter={filter} />
