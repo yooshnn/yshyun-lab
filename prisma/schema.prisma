@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Article {
+  idx         Int     @id @default(autoincrement())
+  project_idx Int     @default(autoincrement()) @map("projectIdx")
+  title       String  @db.VarChar(255)
+  url         String  @db.VarChar(255)
+  project     Project @relation(fields: [project_idx], references: [idx], onDelete: NoAction, onUpdate: NoAction, map: "fk_project_to_article")
+
+  @@map("article")
+}
+
+model Board {
+  idx        Int       @id @default(autoincrement())
+  title      String    @db.VarChar(255)
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  content    String
+  has_file   Int?      @map("hasFile")
+  deleted_at DateTime? @db.Timestamp(6) @map("deletedAt")
+  file       File[]
+
+  @@map("board")
+}
+
+model File {
+  idx       Int    @id @default(autoincrement())
+  board_idx Int    @default(autoincrement()) @map("boardIdx")
+  file      String @db.VarChar(255)
+  board     Board  @relation(fields: [board_idx], references: [idx], onDelete: NoAction, onUpdate: NoAction, map: "fk_board_to_file")
+
+  @@map("file")
+}
+
+model History {
+  idx         Int    @id @default(autoincrement())
+  people_idx  Int    @default(autoincrement()) @map("peopleIdx")
+  period      String @db.VarChar(255)
+  information String @db.VarChar(255)
+  ordering    Int
+  people      People @relation(fields: [people_idx], references: [idx], onDelete: NoAction, onUpdate: NoAction, map: "fk_people_to_history")
+
+  @@map("history")
+}
+
+model Lecture {
+  idx          Int    @id @default(autoincrement())
+  title        String @db.VarChar(255)
+  year         Int?
+  postgraduate String @db.VarChar(255)
+  semester     Int
+
+  @@map("lecture")
+}
+
+model People {
+  idx     Int       @id @default(autoincrement())
+  name    String    @db.VarChar(255)
+  alias   String?   @db.VarChar(255)
+  email   String    @db.VarChar(255)
+  degree  Int
+  image   String?   @db.VarChar(255)
+  history History[]
+
+  @@map("people")
+}
+
+model Project {
+  idx          Int       @id @default(autoincrement())
+  title        String    @db.VarChar(255)
+  ongoing      Int?
+  period       String    @db.VarChar(255)
+  information  String?   @db.VarChar(255)
+  organization String?   @db.VarChar(255)
+  article      Article[]
+
+  @@map("project")
+}
+
+model Publication {
+  idx          Int       @id @default(autoincrement())
+  title        String    @db.VarChar(255)
+  author       String    @db.VarChar(255)
+  information  String    @db.VarChar(255)
+  image        String?   @db.VarChar(255)
+  url          String?   @db.VarChar(255)
+  type         Int
+  published_at DateTime? @db.Timestamp(6) @map("publishedAt")
+
+  @@map("publication")
+}
