@@ -9,7 +9,7 @@ datasource db {
 
 model Article {
   idx         Int     @id @default(autoincrement())
-  project_idx Int     @default(autoincrement()) @map("projectIdx")
+  project_idx Int     @default(autoincrement())
   title       String  @db.VarChar(255)
   url         String  @db.VarChar(255)
   project     Project @relation(fields: [project_idx], references: [idx], onDelete: NoAction, onUpdate: NoAction, map: "fk_project_to_article")
@@ -22,8 +22,8 @@ model Board {
   title      String    @db.VarChar(255)
   created_at DateTime  @default(now()) @db.Timestamptz(6)
   content    String
-  has_file   Int?      @map("hasFile")
-  deleted_at DateTime? @db.Timestamp(6) @map("deletedAt")
+  has_file   Int?     @map("hasFile")
+  deleted_at DateTime? @db.Timestamp(6)
   file       File[]
 
   @@map("board")
@@ -31,7 +31,7 @@ model Board {
 
 model File {
   idx       Int    @id @default(autoincrement())
-  board_idx Int    @default(autoincrement()) @map("boardIdx")
+  board_idx Int    @default(autoincrement())
   file      String @db.VarChar(255)
   board     Board  @relation(fields: [board_idx], references: [idx], onDelete: NoAction, onUpdate: NoAction, map: "fk_board_to_file")
 
@@ -40,11 +40,11 @@ model File {
 
 model History {
   idx         Int    @id @default(autoincrement())
-  people_idx  Int    @default(autoincrement()) @map("peopleIdx")
+  people_idx  Int    @default(autoincrement())
   period      String @db.VarChar(255)
   information String @db.VarChar(255)
   ordering    Int
-  people      People @relation(fields: [people_idx], references: [idx], onDelete: NoAction, onUpdate: NoAction, map: "fk_people_to_history")
+  people      People @relation(fields: [people_idx], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fk_people_to_history")
 
   @@map("history")
 }
@@ -60,7 +60,7 @@ model Lecture {
 }
 
 model People {
-  idx     Int       @id @default(autoincrement())
+  uid     Int       @id @default(autoincrement()) @map("idx")
   name    String    @db.VarChar(255)
   alias   String?   @db.VarChar(255)
   email   String    @db.VarChar(255)
@@ -91,7 +91,7 @@ model Publication {
   image        String?   @db.VarChar(255)
   url          String?   @db.VarChar(255)
   type         Int
-  published_at DateTime? @db.Timestamp(6) @map("publishedAt")
+  published_at DateTime? @db.Timestamp(6)
 
   @@map("publication")
 }
