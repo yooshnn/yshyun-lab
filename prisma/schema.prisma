@@ -50,10 +50,10 @@ model History {
 }
 
 model Lecture {
-  idx          Int    @id @default(autoincrement())
+  uid          Int    @id @default(autoincrement()) @map("idx")
   title        String @db.VarChar(255)
   year         Int?
-  postgraduate String @db.VarChar(255)
+  postgraduate Int
   semester     Int
 
   @@map("lecture")
