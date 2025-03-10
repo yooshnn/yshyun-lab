@@ -12,7 +12,7 @@ model Article {
   project_idx Int     @default(autoincrement())
   title       String  @db.VarChar(255)
   url         String  @db.VarChar(255)
-  project     Project @relation(fields: [project_idx], references: [idx], onDelete: NoAction, onUpdate: NoAction, map: "fk_project_to_article")
+  project     Project @relation(fields: [project_idx], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fk_project_to_article")
 
   @@map("article")
 }
@@ -22,7 +22,7 @@ model Board {
   title      String    @db.VarChar(255)
   created_at DateTime  @default(now()) @db.Timestamptz(6)
   content    String
-  has_file   Int?     @map("hasFile")
+  has_file   Int?
   deleted_at DateTime? @db.Timestamp(6)
   file       File[]
 
@@ -72,7 +72,7 @@ model People {
 }
 
 model Project {
-  idx          Int       @id @default(autoincrement())
+  uid          Int       @id @default(autoincrement()) @map("idx")
   title        String    @db.VarChar(255)
   ongoing      Int?
   period       String    @db.VarChar(255)
