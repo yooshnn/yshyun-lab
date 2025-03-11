@@ -9,6 +9,10 @@ export async function GET(request: Request) {
       date: true,
       file: {
         take: 1,
+        where: {
+          isDeleted: null,
+          isImage: 1,
+        },
         select: {
           file: true,
         },
@@ -16,11 +20,7 @@ export async function GET(request: Request) {
           idx: 'asc',
         },
       },
-      _count: {
-        select: {
-          file: true,
-        },
-      },
+      hasFile: true,
     },
     where: {
       hasFile: { gte: 1 },
@@ -34,7 +34,7 @@ export async function GET(request: Request) {
     title: item.title,
     date: item.date,
     image: item.file && item.file.length > 0 ? item.file[0].file : '',
-    count: item._count?.file ?? 0,
+    count: item.hasFile,
   }));
 
   return NextResponse.json({ data: transformed });
