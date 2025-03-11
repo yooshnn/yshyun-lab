@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Article {
-  idx         Int     @id @default(autoincrement())
+  uid         Int     @id @default(autoincrement()) @map("idx")
   project_idx Int     @default(autoincrement())
   title       String  @db.VarChar(255)
   url         String  @db.VarChar(255)
@@ -30,10 +30,12 @@ model Board {
 }
 
 model File {
-  idx       Int    @id @default(autoincrement())
-  board_idx Int    @default(autoincrement())
-  file      String @db.VarChar(255)
-  board     Board  @relation(fields: [board_idx], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fk_board_to_file")
+  idx       Int       @id @default(autoincrement())
+  board_idx Int       @default(autoincrement())
+  file      String    @db.VarChar(255)
+  isImage   Int?      @map("is_image")
+  isDeleted DateTime? @map("is_deleted") @db.Timestamp(6)
+  board     Board     @relation(fields: [board_idx], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fk_board_to_file")
 
   @@map("file")
 }
@@ -84,14 +86,14 @@ model Project {
 }
 
 model Publication {
-  idx          Int       @id @default(autoincrement())
-  title        String    @db.VarChar(255)
-  author       String    @db.VarChar(255)
-  information  String    @db.VarChar(255)
-  image        String?   @db.VarChar(255)
-  url          String?   @db.VarChar(255)
-  type         Int
-  published_at DateTime? @db.Timestamp(6)
+  uid         Int       @id @default(autoincrement()) @map("idx")
+  title       String    @db.VarChar(255)
+  author      String    @db.VarChar(255)
+  information String    @db.VarChar(255)
+  image       String?   @db.VarChar(255)
+  url         String?   @db.VarChar(255)
+  type        Int
+  publishedAt DateTime? @map("published_at") @db.Timestamp(6)
 
   @@map("publication")
 }
