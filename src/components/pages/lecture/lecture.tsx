@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { TLectureSelected } from '@/app/lecture/types';
 import {
   Button,
   NavToggle,
@@ -9,7 +10,6 @@ import {
   Typography,
 } from '@/components';
 import styles from './lecture.module.scss';
-import { TLectureSelected } from './types';
 
 export const NavComponent = () => (
   <NavToggles>

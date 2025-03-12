@@ -1,24 +1,35 @@
 import clsx from 'clsx';
+import { RefreshCwIcon } from 'lucide-react';
 import React from 'react';
+import { TProject } from '@/app/project/types';
 import { Link } from '@/components';
 import styles from './project.module.scss';
 
-interface WrapperProps extends React.PropsWithChildren {
-  title?: string;
-}
-
-export const Projects = ({ children }: WrapperProps) => (
-  <ul className={styles.wrapper}>{children}</ul>
+export const ProjectsComponent = ({ projects }: { projects: TProject[] }) => (
+  <ul className={styles.wrapper}>
+    {projects.length === 0 && (
+      <div>
+        <span>No matching items were found.</span>&nbsp;
+        <Link icon={RefreshCwIcon} href="/project">
+          reset filters
+        </Link>
+      </div>
+    )}
+    {projects.map(
+      ({ uid, title, organization, ongoing, period, information, article }) => (
+        <Project
+          key={`project:${uid}`}
+          title={title}
+          organization={organization}
+          ongoing={ongoing}
+          period={period}
+          information={information}
+          article={article}
+        />
+      )
+    )}
+  </ul>
 );
-
-interface ItemProps {
-  title: string;
-  organization: string;
-  ongoing: number;
-  period: string;
-  information: string;
-  article: { title: string; url: string }[];
-}
 
 export const Project = ({
   title,
@@ -27,7 +38,7 @@ export const Project = ({
   period,
   information,
   article,
-}: ItemProps) => {
+}: Omit<TProject, 'uid'>) => {
   return (
     <li className={styles.container}>
       <h4 className={styles.title}>{title}</h4>

@@ -1,14 +1,19 @@
 import { PageTitle, Wrapper } from '@/components';
 import { Members, MembersItem } from '@/components/pages/members';
-import { data } from '../dummy';
+import { api } from '@/core/api';
+import { TMember } from '../types';
 
 export default async function Page() {
+  const { alumni } = await api<{
+    alumni: TMember[];
+  }>({ url: 'people' });
+
   return (
     <>
       <PageTitle title="Alumni" subtitle="PEOPLE" />
       <Wrapper>
         <Members title="Alumni">
-          {data.alumni.map(({ uid, name, alias, email, history }) => (
+          {alumni.map(({ uid, name, alias, email, history }) => (
             <MembersItem
               key={uid}
               image="/assets/dummy-members.jpg"

@@ -20,8 +20,6 @@ export const Portal = ({ children }: React.PropsWithChildren) => {
     }
   }, [children]);
 
-  console.log(children);
-
   if (isMounted && element) {
     return ReactDOM.createPortal(
       <div className={clsx(styles.overlay, children && styles.open)}>
