@@ -1,41 +1,41 @@
-import { NextResponse } from 'next/server';
-import { prisma } from '@/app/api/prisma';
+import { NextResponse } from "next/server";
+import { prisma } from "@/app/api/prisma";
 
-export async function GET(request: Request) {
-  const data = await prisma.board.findMany({
-    select: {
-      uid: true,
-      title: true,
-      date: true,
-      file: {
-        take: 1,
-        where: {
-          isDeleted: null,
-          isImage: 1,
-        },
+export async function GET() {
+    const data = await prisma.board.findMany({
         select: {
-          file: true,
+            uid: true,
+            title: true,
+            date: true,
+            file: {
+                take: 1,
+                where: {
+                    isDeleted: null,
+                    isImage: 1,
+                },
+                select: {
+                    file: true,
+                },
+                orderBy: {
+                    idx: "asc",
+                },
+            },
+            hasFile: true,
         },
-        orderBy: {
-          idx: 'asc',
+        where: {
+            hasFile: { gte: 1 },
+            deletedAt: null,
         },
-      },
-      hasFile: true,
-    },
-    where: {
-      hasFile: { gte: 1 },
-      deletedAt: null,
-    },
-    orderBy: { date: 'desc' },
-  });
+        orderBy: { date: "desc" },
+    });
 
-  const transformed = data.map((item) => ({
-    uid: item.uid,
-    title: item.title,
-    date: item.date,
-    image: item.file && item.file.length > 0 ? item.file[0].file : '',
-    count: item.hasFile,
-  }));
+    const transformed = data.map((item) => ({
+        uid: item.uid,
+        title: item.title,
+        date: item.date,
+        image: item.file && item.file.length > 0 ? item.file[0].file : "",
+        count: item.hasFile,
+    }));
 
-  return NextResponse.json({ data: transformed });
+    return NextResponse.json({ data: transformed });
 }
