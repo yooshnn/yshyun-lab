@@ -18,13 +18,14 @@ model Article {
 }
 
 model Board {
-  uid       Int       @id @default(autoincrement()) @map("idx")
-  title     String    @db.VarChar(255)
-  date      DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
-  content   String
-  hasFile   Int?      @map("has_file")
-  deletedAt DateTime? @map("deleted_at") @db.Timestamp(6)
-  file      File[]
+  uid        Int       @id @default(autoincrement()) @map("idx")
+  title      String    @db.VarChar(255)
+  date       DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  content    String
+  hasFile    Int?      @map("has_file")
+  deletedAt  DateTime? @map("deleted_at") @db.Timestamp(6)
+  isHeadline Int?      @map("is_headline")
+  file       File[]
 
   @@map("board")
 }
