@@ -1,0 +1,37 @@
+@use '@/styles/color';
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  width: fit-content;
+  background-color: color.$light;
+  color: color.$dark;
+  transition: background-color 0.2s ease;
+
+  &.withIcon {
+    padding-left: 0.7rem;
+  }
+
+  &.clickable {
+    cursor: pointer;
+    &:hover {
+      background-color: color.$muted;
+    }
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    margin-right: 0.5rem;
+    width: 16px;
+  }
+
+  .label {
+    white-space: nowrap;
+  }
+}

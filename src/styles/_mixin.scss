@@ -1,0 +1,48 @@
+@use './size';
+@use 'sass:map';
+@use './typography';
+
+// typography
+
+@mixin typography($tag) {
+  $style: map.get(typography.$typography, $tag);
+
+  @if $style {
+    @each $prop, $value in $style {
+      #{$prop}: $value;
+    }
+  } @else {
+    @error "Invalid typography tag: #{$tag}";
+  }
+
+  word-break: normal;
+  word-wrap: break-word;
+}
+
+// media queries
+
+@mixin mobile {
+  @media screen and (max-width: #{size.$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: #{size.$breakpoint-tablet}) and (max-width: #{size.$breakpoint-desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: #{size.$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+// frequently used patterns
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

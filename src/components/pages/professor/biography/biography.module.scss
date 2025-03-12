@@ -1,0 +1,18 @@
+.biography {
+  &.regular {
+    display: block;
+
+    @include desktop {
+      display: none;
+    }
+  }
+
+  &.side {
+    display: none;
+
+    @include desktop {
+      margin-top: 1rem;
+      display: block;
+    }
+  }
+}
