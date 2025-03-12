@@ -1,0 +1,68 @@
+@use '@/styles/color';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+
+  list-style: none;
+}
+
+.container {
+  > * {
+    line-height: 1.75rem;
+  }
+}
+
+.title {
+  font-size: 1.125rem;
+}
+
+.ongoing {
+  display: flex;
+  column-gap: 1rem;
+  align-items: center;
+
+  .period {
+    color: color.$muted;
+  }
+
+  .status {
+    display: inherit;
+    column-gap: 0.4rem;
+    align-items: center;
+    font-size: 0.9rem;
+
+    .circle {
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%;
+    }
+
+    &.ongoing {
+      color: color.$primary;
+      font-weight: 800;
+
+      .circle {
+        background-color: color.$primary;
+      }
+    }
+
+    &.finished {
+      color: color.$muted;
+
+      .circle {
+        background-color: color.$muted;
+      }
+    }
+  }
+}
+
+.article {
+  list-style: none;
+}
+
+.information {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}

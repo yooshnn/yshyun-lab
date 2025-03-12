@@ -1,0 +1,21 @@
+@use '@/styles/color';
+
+.toggle {
+  color: color.$muted;
+}
+
+.highlight {
+  background-color: color.$light;
+  color: color.$black;
+}
+
+.toggleGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+
+  @include mobile {
+    margin-bottom: 2rem;
+  }
+}

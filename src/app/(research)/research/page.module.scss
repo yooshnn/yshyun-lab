@@ -1,0 +1,10 @@
+@use '@/styles/color';
+
+.wrapper {
+  row-gap: 3rem;
+}
+
+.publications {
+  color: color.$muted;
+  padding: 1rem;
+}
