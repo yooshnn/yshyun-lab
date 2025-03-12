@@ -1,0 +1,99 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Article {
+  uid         Int     @id @default(autoincrement()) @map("idx")
+  project_idx Int     @default(autoincrement())
+  title       String  @db.VarChar(255)
+  url         String  @db.VarChar(255)
+  project     Project @relation(fields: [project_idx], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fk_project_to_article")
+
+  @@map("article")
+}
+
+model Board {
+  uid       Int       @id @default(autoincrement()) @map("idx")
+  title     String    @db.VarChar(255)
+  date      DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  content   String
+  hasFile   Int?      @map("has_file")
+  deletedAt DateTime? @map("deleted_at") @db.Timestamp(6)
+  file      File[]
+
+  @@map("board")
+}
+
+model File {
+  idx       Int       @id @default(autoincrement())
+  board_idx Int       @default(autoincrement())
+  file      String    @db.VarChar(255)
+  isImage   Int?      @map("is_image")
+  isDeleted DateTime? @map("is_deleted") @db.Timestamp(6)
+  board     Board     @relation(fields: [board_idx], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fk_board_to_file")
+
+  @@map("file")
+}
+
+model History {
+  idx         Int    @id @default(autoincrement())
+  people_idx  Int    @default(autoincrement())
+  period      String @db.VarChar(255)
+  information String @db.VarChar(255)
+  ordering    Int
+  people      People @relation(fields: [people_idx], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fk_people_to_history")
+
+  @@map("history")
+}
+
+model Lecture {
+  uid          Int    @id @default(autoincrement()) @map("idx")
+  title        String @db.VarChar(255)
+  year         Int?
+  postgraduate Int
+  semester     Int
+
+  @@map("lecture")
+}
+
+model People {
+  uid     Int       @id @default(autoincrement()) @map("idx")
+  name    String    @db.VarChar(255)
+  alias   String?   @db.VarChar(255)
+  email   String    @db.VarChar(255)
+  degree  Int
+  image   String?   @db.VarChar(255)
+  history History[]
+
+  @@map("people")
+}
+
+model Project {
+  uid          Int       @id @default(autoincrement()) @map("idx")
+  title        String    @db.VarChar(255)
+  ongoing      Int?
+  period       String    @db.VarChar(255)
+  information  String?   @db.VarChar(255)
+  organization String?   @db.VarChar(255)
+  article      Article[]
+
+  @@map("project")
+}
+
+model Publication {
+  uid         Int       @id @default(autoincrement()) @map("idx")
+  title       String    @db.VarChar(255)
+  author      String    @db.VarChar(255)
+  information String    @db.VarChar(255)
+  image       String?   @db.VarChar(255)
+  url         String?   @db.VarChar(255)
+  type        Int
+  publishedAt DateTime? @map("published_at") @db.Timestamp(6)
+
+  @@map("publication")
+}

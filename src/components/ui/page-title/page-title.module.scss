@@ -1,0 +1,27 @@
+@use '@/styles/color';
+
+.wrapper {
+  background-color: color.$primary;
+  height: 320px;
+
+  @include flex-center;
+}
+
+.content {
+  color: #fff;
+  text-align: center;
+
+  h1 {
+    font-size: 4rem;
+    font-weight: 800;
+
+    @include mobile {
+      font-size: 3rem;
+    }
+  }
+
+  p {
+    padding-top: 24px;
+    font-size: 1.25rem;
+  }
+}

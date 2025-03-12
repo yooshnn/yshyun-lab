@@ -1,0 +1,35 @@
+@use '@/styles/color';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+
+  list-style: none;
+}
+
+.container {
+  > * {
+    line-height: 1.75rem;
+  }
+}
+
+.semester {
+  display: flex;
+
+  h4 {
+    min-width: 6rem;
+    font-weight: 400;
+    color: color.$primary;
+  }
+
+  ul {
+    flex-grow: 1;
+    list-style: none;
+    color: color.$dark;
+
+    li {
+      word-break: break-all;
+    }
+  }
+}
