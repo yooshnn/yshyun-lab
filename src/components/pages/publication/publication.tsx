@@ -1,26 +1,37 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import React from 'react';
+import { TPublication } from '@/app/(research)/publication/types';
 import { Link } from '@/components';
 import styles from './publication.module.scss';
+import { showYear } from './utils';
 
-interface WrapperProps extends React.PropsWithChildren {
-  title?: string;
-}
-
-export const Publications = ({ children }: WrapperProps) => (
-  <ul className={styles.wrapper}>{children}</ul>
+export const PublicationsComponent = ({
+  data,
+  isPreprint,
+}: {
+  data: TPublication[];
+  isPreprint?: boolean;
+}) => (
+  <ul className={styles.wrapper}>
+    {data.map(
+      ({ uid, publishedAt, title, author, information, image, url }, index) => (
+        <Publication
+          key={`preprint:${uid}`}
+          showYear={
+            isPreprint ? false : showYear(data, index, publishedAt as string)
+          }
+          publishedAt={publishedAt}
+          title={title}
+          author={author}
+          information={information}
+          image={image}
+          url={url}
+        />
+      )
+    )}
+  </ul>
 );
-
-interface ItemProps {
-  publishedAt: Date | null;
-  showYear?: boolean;
-  title: string;
-  author: string;
-  information: string;
-  image: string | null;
-  url: string | null;
-}
 
 export const Publication = ({
   publishedAt,
@@ -30,7 +41,9 @@ export const Publication = ({
   information,
   image,
   url,
-}: ItemProps) => {
+}: Omit<TPublication, 'uid'>) => {
+  const year = publishedAt ? new Date(publishedAt).getFullYear() : ' ';
+
   return (
     <li className={styles.container}>
       <span
@@ -40,7 +53,7 @@ export const Publication = ({
           showYear === false ? styles.hidden : undefined
         )}
       >
-        {publishedAt?.getFullYear() ?? ' '}
+        {year}
       </span>
       {image && (
         <div className={clsx(styles.image, !image ? styles.hidden : undefined)}>
