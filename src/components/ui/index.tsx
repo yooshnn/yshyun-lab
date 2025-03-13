@@ -6,3 +6,4 @@ export * from './timeline/timeline';
 export * from './chip/chip';
 export * from './nav-toggle/nav-toggle';
 export * from './pagination/pagination';
+export * from './phone/phone';

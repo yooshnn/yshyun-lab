@@ -1,6 +1,6 @@
 import { MailIcon, MapPinIcon, PhoneIcon } from 'lucide-react';
 import Image from 'next/image';
-import { Box, Button, Email, Link, Typography } from '@/components';
+import { Box, Button, Email, Link, Phone, Typography } from '@/components';
 import { professorInfo } from '../config';
 import styles from './profile.module.scss';
 
@@ -31,7 +31,7 @@ export const Profile = () => {
           </div>
           <div className={styles.contact}>
             <ContactItem icon={MailIcon} content={<Email {...email} />} />
-            <ContactItem icon={PhoneIcon} content={phone} />
+            <ContactItem icon={PhoneIcon} content={<Phone data={phone} />} />
             <ContactItem icon={MapPinIcon} content={office} />
           </div>
         </div>
