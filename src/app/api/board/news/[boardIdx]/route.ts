@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/app/api/prisma";
 
-export async function GET(request: Request, { params }: { params: { boardIdx: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ boardIdx: string }> }) {
     const { boardIdx } = await params;
     const uid = parseInt(boardIdx, 10);
     const data = await prisma.board.findUnique({
