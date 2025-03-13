@@ -3,6 +3,8 @@ import { AlbumComponent } from '@/components/pages/album/album';
 import { api } from '@/core/api';
 import { TAlbum } from './types';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page() {
   const { data } = await api<{
     data: TAlbum[];

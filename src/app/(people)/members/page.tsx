@@ -4,6 +4,8 @@ import { api } from '@/core/api';
 import { TMember } from '../types';
 import styles from './page.module.scss';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page() {
   const { doctor, master } = await api<{
     doctor: TMember[];

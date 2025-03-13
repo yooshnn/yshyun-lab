@@ -1,5 +1,3 @@
-'use server';
-
 import { Box, PageTitle, Wrapper } from '@/components';
 import {
   Biography,

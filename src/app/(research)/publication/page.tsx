@@ -3,6 +3,8 @@ import { PublicationsComponent } from '@/components/pages/publication';
 import { api } from '@/core/api';
 import { TPublication } from './types';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page() {
   const { preprints, publications } = await api<{
     preprints: TPublication[];
