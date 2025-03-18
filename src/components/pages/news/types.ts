@@ -1,4 +1,4 @@
-export interface TBoard {
+export interface TNews {
   uid: number;
   hasFile: number;
   title: string;

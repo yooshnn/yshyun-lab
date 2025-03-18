@@ -1,7 +1,7 @@
 import { PageTitle } from '@/components';
 import { NewsComponent } from '@/components/pages/news/news';
 import { api } from '@/core/api';
-import { TBoard } from './types';
+import { TNews } from './types';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,11 +18,11 @@ export default async function Page({ searchParams }: Props) {
   // fetch data
 
   const { data: headline } = await api<{
-    data: TBoard[];
+    data: TNews[];
   }>({ url: 'board/headline' });
 
   const { data: news } = await api<{
-    data: TBoard[];
+    data: TNews[];
   }>({ url: 'board/news' });
 
   // calc pagination data

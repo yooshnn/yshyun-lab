@@ -1,4 +1,4 @@
-export interface TNews {
+export interface TArticle {
   uid: number;
   date: string;
   title: string;
