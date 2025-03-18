@@ -1,7 +1,9 @@
+import 'github-markdown-css';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Layout } from '@/components/layout';
 import '../styles/globals.scss';
+import '../styles/markdown.css';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',

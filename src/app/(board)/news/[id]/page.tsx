@@ -1,27 +1,52 @@
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { PageTitle } from '@/components';
 import { api } from '@/core/api';
+import { TNews } from './types';
 
 export const dynamic = 'force-dynamic';
 
 interface Props {
-  searchParams: Promise<{
-    page: number;
+  params: Promise<{
+    id: number;
   }>;
 }
 
-// # of news per page
-const size = 20;
+const dummy = `A paragraph with *emphasis* and **strong importance**.
 
-export default async function Page({ searchParams }: Props) {
+> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
+
+* Lists
+* [ ] todo
+* [x] done
+
+A table:
+
+| a | b |
+| - | - |
+`;
+
+export default async function Page({ params }: Props) {
   // fetch data
+  const id = (await params).id;
 
-  const { data } = await api<{
-    data: TBoard[];
-  }>({ url: 'board/headline' });
+  const {
+    data: { title, content, date },
+  } = await api<{
+    data: TNews;
+  }>({ url: `board/news/${id}` });
 
   return (
-    <div>
-      <textarea value={data} cols={40} rows={40} />
-    </div>
+    <>
+      <div>
+        <PageTitle title="News" subtitle="BOARD" />
+        <h1>{title}</h1>
+        <article className="markdown-body">
+          <Markdown remarkPlugins={[[remarkGfm, { singleTilde: false }]]}>
+            {content.replaceAll('\\n', '\n')}
+          </Markdown>
+        </article>
+      </div>
+    </>
   );
 }
