@@ -1,4 +1,4 @@
-import { PageTitle, Wrapper } from '@/components';
+import { Wrapper } from '@/components';
 import { Article } from '@/components/pages/article/article';
 import { api } from '@/core/api';
 import { TArticle } from './types';
@@ -22,13 +22,8 @@ export default async function Page({ params }: Props) {
   }>({ url: `board/news/${id}` });
 
   return (
-    <>
-      <div>
-        <PageTitle title="News" subtitle="BOARD" />
-        <Wrapper>
-          <Article title={title} date={date} content={content} />
-        </Wrapper>
-      </div>
-    </>
+    <Wrapper>
+      <Article title={title} date={date} content={content} />
+    </Wrapper>
   );
 }
