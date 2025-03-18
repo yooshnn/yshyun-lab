@@ -3,15 +3,15 @@ import { PaperclipIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Pagination, Wrapper } from '@/components';
 import styles from './news.module.scss';
-import { TNews } from './types';
+import { TBoard } from './types';
 
 export const NewsComponent = ({
   headline,
   data,
   page,
 }: {
-  headline: TNews[];
-  data: TNews[];
+  headline: TBoard[];
+  data: TBoard[];
   page: { cur: number; last: number };
 }) => (
   <Wrapper className={styles.pageWrapper}>
@@ -55,7 +55,7 @@ const NewsItem = ({
   data,
   isHeadline,
 }: {
-  data: TNews;
+  data: TBoard;
   isHeadline: boolean;
 }) => {
   const { uid, hasFile, title, date } = data;

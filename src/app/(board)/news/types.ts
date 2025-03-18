@@ -1,4 +1,4 @@
-export interface TNews {
+export interface TBoard {
   uid: number;
   title: string;
   date: string;
