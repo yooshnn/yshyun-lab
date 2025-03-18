@@ -22,6 +22,7 @@ export const Article = ({
       <div className={clsx('markdown-body', styles.content)}>
         <Markdown remarkPlugins={[[remarkGfm, { singleTilde: false }]]}>
           {content.replaceAll('\\n', '\n')}
+          {/* TODO: remove replace */}
         </Markdown>
       </div>
     </div>
