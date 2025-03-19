@@ -1,0 +1,25 @@
+@use '@/styles/color';
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1rem;
+  row-gap: 2rem;
+
+  @include mobile {
+    grid-template-columns: auto;
+  }
+  @include tablet {
+    grid-template-columns: auto;
+  }
+}
+
+.topic {
+  > h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .index {
+    color: color.$primary;
+  }
+}
