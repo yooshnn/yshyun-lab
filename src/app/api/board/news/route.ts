@@ -13,7 +13,7 @@ export async function GET() {
       deletedAt: null,
     },
     orderBy: {
-      uid: 'asc',
+      uid: 'desc',
     },
   });
   return NextResponse.json({
