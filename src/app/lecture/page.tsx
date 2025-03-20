@@ -17,7 +17,7 @@ export default async function Page({ searchParams }: Props) {
   const data = await api<{ data: TLecture[] }>({ url: 'lecture' });
 
   const filter = (await searchParams).filter;
-  const lectures = select(data.data.reverse(), filter);
+  const lectures = select(data.data, filter);
 
   return (
     <>
