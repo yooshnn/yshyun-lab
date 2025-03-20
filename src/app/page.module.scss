@@ -1,0 +1,18 @@
+.side {
+  display: flex;
+  flex-direction: column;
+  column-gap: 1rem;
+  row-gap: 4rem;
+
+  @include desktop {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+.area {
+  width: 100%;
+  .content {
+    row-gap: 1rem;
+  }
+}

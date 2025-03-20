@@ -1,0 +1,21 @@
+@use '@/styles/color';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  > p {
+    transition: all 0.2s ease;
+
+    &:nth-child(1) {
+      color: color.$primary;
+    }
+  }
+
+  &:hover {
+    > p {
+      transform: translateX(4px);
+    }
+  }
+}

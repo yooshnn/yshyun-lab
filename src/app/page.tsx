@@ -1,47 +1,101 @@
 'use server';
 
-import { ArrowRight } from 'lucide-react';
-import { Link, PageTitle, Typography, Wrapper } from '@/components';
+import { ArrowRightIcon } from 'lucide-react';
+import { Box, Button, Link, Spacer, Typography, Wrapper } from '@/components';
+import {
+  Hero,
+  News,
+  Publication,
+  Topic,
+  Topics,
+} from '@/components/pages/home';
+import { topics } from '@/components/pages/home/config';
+import { api } from '@/core/api';
+import { TNews } from './(board)/news/types';
+import { TPublication } from './(research)/publication/types';
+import styles from './page.module.scss';
+
+const Area = ({
+  title,
+  children,
+}: React.PropsWithChildren<{ title: string }>) => (
+  <Box direction="y" className={styles.area}>
+    <Typography as="h3">{title}</Typography>
+    <Box direction="y" className={styles.content}>
+      {children}
+    </Box>
+  </Box>
+);
 
 export default async function Home() {
+  const { publications } = await api<{
+    publications: TPublication[];
+  }>({ url: 'publication?limit=4' });
+
+  const { data: news } = await api<{
+    data: TNews[];
+  }>({ url: 'board/news?limit=4' });
+
+  const maxLength = Math.min(publications.length, news.length, 3) + 1;
+
   return (
     <>
-      <PageTitle title="Professor" subtitle="PEOPLE" />
+      <Hero />
       <Wrapper>
-        <div style={{ width: '100%', padding: '2rem 0' }}>
-          <Typography as="h2">
-            Topological Methods in Machine Learning
-          </Typography>
-
-          <Typography as="h3">2025</Typography>
-
-          <Typography as="p">
-            Topological techniques provide a powerful framework for
-            understanding high-dimensional data structures in machine learning.
-            Persistent homology, manifold learning, and topological data
-            analysis (TDA) offer insights into data geometry and stability,
-            enhancing interpretability and robustness in deep learning models.
-            This research explores the integration of topological invariants
-            with neural networks, focusing on applications in feature
-            extraction, adversarial robustness, and structured representation
-            learning.
-          </Typography>
-
-          <ul style={{ color: 'gray', padding: '1rem' }}>
-            <Typography as="li">
-              Kim et al., Persistent Homology for Feature Extraction in Deep
-              Learning, arXiv
-            </Typography>
-            <Typography as="li">
-              Lee et al., Manifold Learning for High-Dimensional Data
-              Representations, ICML 2023 Park
-            </Typography>
-          </ul>
-
-          <Link href="/test" icon={ArrowRight}>
-            read further
-          </Link>
+        <Topics>
+          {topics.map(({ title, paragraph }, index) => (
+            <Topic
+              title={title}
+              index={index + 1}
+              key={`research-topic-${index + 1}`}
+            >
+              <Typography as="p">{paragraph}</Typography>
+            </Topic>
+          ))}
+        </Topics>
+        <Spacer size="xl" />
+        <Spacer />
+        <div className={styles.side}>
+          <Area title="News">
+            {news.slice(0, maxLength).map(({ uid, title, date }) => (
+              <Link
+                key={`news;uid:${uid}`}
+                href={`/news/${uid}`}
+                unstyled
+                style={{ width: '100%' }}
+              >
+                <News title={title} date={date} />
+              </Link>
+            ))}
+            <Link href="/news" icon={ArrowRightIcon}>
+              find more
+            </Link>
+          </Area>
+          <Area title="Recent Publications">
+            {publications.slice(0, maxLength).map(({ uid, title, author }) => (
+              <Publication
+                key={`publication;uid:${uid}`}
+                title={title}
+                author={author}
+              />
+            ))}
+            <Link href="/publication" icon={ArrowRightIcon}>
+              find more
+            </Link>
+          </Area>
         </div>
+        <Spacer size="xl" />
+        <Spacer />
+        <Area title="Apply">
+          <Typography as="p">
+            We are excited to welcome new undergraduate, M.S., and Ph.D.
+            students to our lab! Feel free to contact us if you&apos;re
+            interested in joining.
+          </Typography>
+          <Button asChild>
+            <Link href="/contact">contact us</Link>
+          </Button>
+        </Area>
       </Wrapper>
     </>
   );

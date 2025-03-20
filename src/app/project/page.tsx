@@ -10,6 +10,8 @@ interface Props {
   }>;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page({ searchParams }: Props) {
   const data = await api<{ data: TProject[] }>({ url: 'project' });
 

@@ -3,6 +3,8 @@ import { NewsComponent } from '@/components/pages/news/news';
 import { api } from '@/core/api';
 import { TNews } from './types';
 
+export const dynamic = 'force-dynamic';
+
 interface Props {
   searchParams: Promise<{
     page: number;

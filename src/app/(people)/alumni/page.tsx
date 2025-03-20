@@ -3,6 +3,8 @@ import { Members, MembersItem } from '@/components/pages/members';
 import { api } from '@/core/api';
 import { TMember } from '../types';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page() {
   const { alumni } = await api<{
     alumni: TMember[];

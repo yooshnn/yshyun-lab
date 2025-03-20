@@ -8,7 +8,7 @@ export const professorInfo = {
     'Republic of Korea',
   ],
   email: { name: 'yshyun', domain: 'inha.ac.kr' },
-  phone: '+82-32-860-7629',
+  phone: ['+82', '32', '860', '7629'],
   office: '5N212',
   image: '/assets/professor.jpg',
 };

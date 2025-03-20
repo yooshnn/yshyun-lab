@@ -36,6 +36,7 @@ export const api = async <T>({
         err.response
       );
     }
+    console.log(JSON.stringify(err));
     throw new APIError();
   }
 };

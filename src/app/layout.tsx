@@ -1,3 +1,4 @@
+import 'github-markdown-css/github-markdown-light.css';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Layout } from '@/components/layout';
