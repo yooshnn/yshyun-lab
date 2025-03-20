@@ -1,0 +1,11 @@
+@use '@/styles/color';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  > p:nth-child(2) {
+    color: color.$muted;
+  }
+}
