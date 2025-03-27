@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import multer from 'multer';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';

@@ -1,5 +1,3 @@
-'use server';
-
 import { ArrowRightIcon } from 'lucide-react';
 import { Box, Button, Link, Spacer, Typography, Wrapper } from '@/components';
 import {
@@ -15,6 +13,7 @@ import { TNews } from './(board)/news/types';
 import { TPublication } from './(research)/publication/types';
 import styles from './page.module.scss';
 
+export const dynamic = 'force-dynamic';
 const Area = ({
   title,
   children,
